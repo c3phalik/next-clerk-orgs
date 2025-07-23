@@ -13,12 +13,12 @@ import {
 
 const navSecondary = [
   {
-    title: "Support",
+    title: "Support (coming soon)",
     url: "#",
     icon: LifeBuoy,
   },
   {
-    title: "Feedback",
+    title: "Feedback (coming soon)",
     url: "#",
     icon: Send,
   },
@@ -42,11 +42,7 @@ export function NavSecondary() {
       url: `/workspace/${organization.slug}/manage/settings`,
       icon: Settings,
     },
-    {
-      title: "Roles & Permissions",
-      url: `/workspace/${organization.slug}/manage/roles`,
-      icon: UserCog,
-    },
+    
   ] : []
 
   return (
@@ -69,7 +65,8 @@ export function NavSecondary() {
             </SidebarMenu>
           </>
         )}
-        {/* <SidebarMenu>
+        <SidebarGroupLabel>General</SidebarGroupLabel>
+        <SidebarMenu>
           {navSecondary.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild size="sm">
@@ -80,7 +77,7 @@ export function NavSecondary() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
-        </SidebarMenu> */}
+        </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
   )
