@@ -33,15 +33,15 @@ const data = {
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Generate ideas",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Content library",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Scheduled posts",
           url: "#",
         },
       ],
