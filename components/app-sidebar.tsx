@@ -8,8 +8,10 @@ import {
   Command,
   Frame,
   GalleryVerticalEnd,
+  LifeBuoy,
   Map,
   PieChart,
+  Send,
   Settings2,
   SquareTerminal,
 } from "lucide-react"
@@ -25,6 +27,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { NavSecondary } from "./nav-secondary"
 
 // This is sample data.
 const data = {
@@ -137,6 +140,7 @@ const data = {
       ],
     },
   ],
+ 
   projects: [
     {
       name: "Design Engineering",
@@ -166,6 +170,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
+      <NavSecondary />
       <SidebarFooter>
         <NavUser />
       </SidebarFooter>
