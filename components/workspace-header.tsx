@@ -11,6 +11,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import ThemeModeToggle from "@/components/customized/switch/theme-mode-toggle"
 
 interface WorkspaceHeaderProps {
   title: string
@@ -27,7 +28,7 @@ export function WorkspaceHeader({
 }: WorkspaceHeaderProps) {
   return (
     <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-      <div className="flex items-center gap-2 px-4">
+      <div className="flex items-center gap-2 px-4 flex-1">
         <SidebarTrigger className="-ml-1" />
         <Separator
           orientation="vertical"
@@ -46,7 +47,12 @@ export function WorkspaceHeader({
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        {actions && <div className="ml-auto">{actions}</div>}
+        <div className="ml-auto flex items-center gap-2">
+          {actions && <div>{actions}</div>}
+        </div>
+      </div>
+      <div className="pr-4">
+        <ThemeModeToggle />
       </div>
     </header>
   )
