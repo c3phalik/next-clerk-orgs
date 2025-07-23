@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider, OrganizationSwitcher, SignInButton, SignOutButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
+import "./index.css";
+import { Check, CircleOff, Info, SquareAsterisk, Loader } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +40,15 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <Toaster 
+            icons={{
+              success: <Check size={15} />,
+              info: <Info size={15} />,
+              warning: <SquareAsterisk size={15} />,
+              error: <CircleOff size={15} />,
+              loading: <Loader size={15} />,
+            }}
+            />
           </ThemeProvider>
         </body>
       </html>
