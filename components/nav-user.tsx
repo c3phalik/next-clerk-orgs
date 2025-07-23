@@ -8,6 +8,7 @@ import {
   LogOut,
   Sparkles,
 } from "lucide-react"
+import { useClerk, useUser } from "@clerk/nextjs"
 
 import {
   Avatar,
@@ -29,16 +30,33 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { Skeleton } from "@/components/ui/skeleton"
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string
-    email: string
-    avatar: string
+// Split into two components to avoid React hook rules issues
+function NavUserSkeleton() {
+  return (
+    <SidebarMenu>
+      <SidebarMenuItem>
+        <Skeleton className="h-10 w-full rounded-md bg-slate-200 dark:bg-slate-700" />
+      </SidebarMenuItem>
+    </SidebarMenu>
+  )
+}
+
+export function NavUser() {
+  const { user, isLoaded } = useUser()
+  const { signOut } = useClerk()
+  
+  // Show skeleton while loading - doesn't use any hooks that require context
+  if (!isLoaded) {
+    return <NavUserSkeleton />
   }
-}) {
+  
+  if (!user) {
+    return null
+  }
+  
+  // Only access sidebar context when we know we're fully rendered and not loading
   const { isMobile } = useSidebar()
 
   return (
@@ -51,12 +69,14 @@ export function NavUser({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarImage src={user.imageUrl} alt={user.fullName || ""} />
+                <AvatarFallback className="rounded-lg">
+                  {user.firstName?.[0]}{user.lastName?.[0]}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-medium">{user.fullName || user.username}</span>
+                <span className="truncate text-xs">{user.primaryEmailAddress?.emailAddress}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -70,12 +90,14 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarImage src={user.imageUrl} alt={user.fullName || ""} />
+                  <AvatarFallback className="rounded-lg">
+                    {user.firstName?.[0]}{user.lastName?.[0]}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate font-medium">{user.fullName || user.username}</span>
+                  <span className="truncate text-xs">{user.primaryEmailAddress?.emailAddress}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
@@ -102,7 +124,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => signOut()}>
               <LogOut />
               Log out
             </DropdownMenuItem>

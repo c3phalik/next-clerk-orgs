@@ -14,6 +14,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Skeleton } from "@/components/ui/skeleton"
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -21,7 +22,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-export function TeamSwitcher() {
+export function OrgSwitcher() {
   const router = useRouter()
   const { isMobile } = useSidebar()
   const { organization } = useOrganization()
@@ -47,14 +48,7 @@ export function TeamSwitcher() {
     return (
       <SidebarMenu>
         <SidebarMenuItem>
-          <SidebarMenuButton size="lg">
-            <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-              <Building className="size-4" />
-            </div>
-            <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-medium">Loading...</span>
-            </div>
-          </SidebarMenuButton>
+          <Skeleton className="h-10 w-full rounded-md bg-slate-200 dark:bg-slate-700" />
         </SidebarMenuItem>
       </SidebarMenu>
     )
