@@ -33,13 +33,8 @@ export function NavSecondary() {
   // Create admin links with dynamic org slug
   const adminLinks = organization ? [
     {
-      title: "Manage Members",
-      url: `/workspace/${organization.slug}/manage/members`,
-      icon: Users,
-    },
-    {
-      title: "Organization Settings",
-      url: `/workspace/${organization.slug}/manage/settings`,
+      title: "Manage Workspace",
+      url: `/workspace/manage`,
       icon: Settings,
     },
     

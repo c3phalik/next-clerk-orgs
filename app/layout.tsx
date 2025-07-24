@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner"
 import "./globals.css";
 import "./index.css";
 import { Check, CircleOff, Info, SquareAsterisk, Loader } from "lucide-react";
+import { shadcn } from '@clerk/themes'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+    appearance={{
+      baseTheme: shadcn,
+      
+    }}
+    >
       <html lang="en" suppressHydrationWarning>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}

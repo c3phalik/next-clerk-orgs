@@ -8,7 +8,7 @@ import {
   LogOut,
   Sparkles,
 } from "lucide-react"
-import { useClerk, useUser } from "@clerk/nextjs"
+import { useClerk, useUser, UserProfile } from "@clerk/nextjs"
 
 import {
   Avatar,
@@ -45,7 +45,7 @@ function NavUserSkeleton() {
 
 export function NavUser() {
   const { user, isLoaded } = useUser()
-  const { signOut } = useClerk()
+  const { signOut, openUserProfile } = useClerk()
   
   // Show skeleton while loading - doesn't use any hooks that require context
   if (!isLoaded) {
@@ -110,7 +110,7 @@ export function NavUser() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => openUserProfile()}>
                 <BadgeCheck />
                 Account
               </DropdownMenuItem>
