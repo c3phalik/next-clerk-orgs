@@ -32,17 +32,20 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { InviteMemberDialog } from "@/app/workspace/[org_slug]/manage/members/invite-member-dialog"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   totalCount: number
+  orgId: string
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   totalCount,
+  orgId,
 }: DataTableProps<TData, TValue>) {
   const router = useRouter()
   const pathname = usePathname()
@@ -142,7 +145,7 @@ export function DataTable<TData, TValue>({
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button>Invite Member</Button>
+          <InviteMemberDialog orgId={orgId} />
         </div>
       </div>
       <div className="rounded-md border">

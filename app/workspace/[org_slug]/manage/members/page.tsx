@@ -76,7 +76,7 @@ export default async function MembersPage({
           <p className="mb-4 text-sm text-muted-foreground">
             {totalCount} {totalCount === 1 ? "member" : "members"} in this organization
           </p>
-          <DataTable columns={columns} data={transformedMembers} totalCount={totalCount} />
+          <DataTable columns={columns} data={transformedMembers} totalCount={totalCount} orgId={orgId} />
         </div>
       </>
     )
