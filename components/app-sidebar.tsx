@@ -7,8 +7,12 @@ import {
   Bot,
   Command,
   GalleryVerticalEnd,
+  PhoneCall,
   Settings2,
   SquareTerminal,
+  Mail,
+  Mails,
+  Sparkles,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -29,7 +33,7 @@ const data = {
     {
       title: "Content Engine",
       url: "#",
-      icon: SquareTerminal,
+      icon: Sparkles,
       isActive: true,
       items: [
         {
@@ -47,9 +51,9 @@ const data = {
       ],
     },
     {
-      title: "SMTPunk",
+      title: "Email Agents",
       url: "#",
-      icon: Bot,
+      icon: Mails,
       items: [
         {
           title: "Genesis",
@@ -66,12 +70,12 @@ const data = {
       ],
     },
     {
-      title: "Agent",
+      title: "Voice Agent",
       url: "#",
-      icon: Bot,
+      icon: PhoneCall,
       items: [
         {
-          title: "Genesis",
+          title: "Voice Chat",
           url: "#",
         },
         {
